@@ -1,13 +1,12 @@
 import { AuthService } from './auth.service';
+import type { Response } from 'express';
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     login(loginData: {
         cpf: string;
         happyday: string;
-    }): Promise<{
-        access_token: string;
-    }>;
+    }, res: Response): Promise<Response<any, Record<string, any>>>;
     protectedRoute(): Promise<{
         message: string;
     }>;
