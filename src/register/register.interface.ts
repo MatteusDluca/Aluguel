@@ -1,3 +1,5 @@
+import { UserRole as PrismaUserRole } from '@prisma/client'
+
 export interface Address {
   num: number
   street: string
@@ -12,5 +14,5 @@ export interface iUser {
   tell: number
   cpf: string
   address: Address
-  role: string
+  role: PrismaUserRole
 }

@@ -9,7 +9,7 @@ export declare class RegisterService {
         cpf: string;
         happyday: string;
         tell: number;
-        role: string;
+        role: import(".prisma/client").$Enums.UserRole;
         createdAt: Date;
         updatedAt: Date;
         addressId: string;
