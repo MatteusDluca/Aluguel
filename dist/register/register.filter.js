@@ -10,10 +10,11 @@ exports.RegisterFilter = void 0;
 const common_1 = require("@nestjs/common");
 let RegisterFilter = class RegisterFilter {
     catch(exception, host) {
+        console.log('Erro prisma', exception);
         const context = host.switchToHttp();
         const response = context.getResponse();
         const status = common_1.HttpStatus.CONFLICT;
-        let message;
+        let message = 'Um erro inesperado';
         switch (exception.code) {
             case 'P2002':
                 {
@@ -24,17 +25,12 @@ let RegisterFilter = class RegisterFilter {
                     else if (field === 'tell') {
                         message = 'Este número de telefone já esta em uso';
                     }
-                    else {
-                        message = 'Um erro de unicidade ocorreu';
-                    }
                 }
                 break;
-            default:
-                message = 'Um erro inesperado ocorreu';
         }
         response.status(status).json({
             statusCode: status,
-            message,
+            message: message,
         });
     }
 };

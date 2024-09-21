@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import {
   ArgumentsHost,
   Catch,
@@ -9,11 +10,12 @@ import type { PrismaClientKnownRequestError } from '@prisma/client/runtime/libra
 @Catch()
 export class RegisterFilter implements ExceptionFilter {
   catch(exception: PrismaClientKnownRequestError, host: ArgumentsHost) {
+    console.log('Erro prisma', exception)
     const context = host.switchToHttp()
     const response = context.getResponse()
     const status = HttpStatus.CONFLICT
 
-    let message: string
+    let message = 'Um erro inesperado'
 
     switch (exception.code) {
       case 'P2002':
@@ -23,18 +25,14 @@ export class RegisterFilter implements ExceptionFilter {
             message = 'Este CPF já existe'
           } else if (field === 'tell') {
             message = 'Este número de telefone já esta em uso'
-          } else {
-            message = 'Um erro de unicidade ocorreu'
           }
         }
         break
-      default:
-        message = 'Um erro inesperado ocorreu'
     }
 
     response.status(status).json({
       statusCode: status,
-      message,
+      message: message,
     })
   }
 }

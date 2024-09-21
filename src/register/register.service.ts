@@ -11,6 +11,9 @@ export class RegisterService {
       if (!dateRegex.test(userData.happyday)) {
         throw new Error('A data happyday deve estar no formato YYYY-MM-DD')
       }
+      if (!['Admin', 'User'].includes(userData.role)) {
+        throw new Error('O papel do usuário deve ser Admin ou User.')
+      }
     } catch (error) {
       console.error('Erro ao criar o usuário:', error)
       throw new Error('Erro ao criar o usuário: ' + error)
