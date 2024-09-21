@@ -1,0 +1,14 @@
+
+services: 
+  postgress: 
+    container_name: roseanne-dias-pg
+    image: bitnami/postgresql:latest
+    ports: 
+      - 5432:5432
+    environment: 
+      POSTGRESQL_USERNAME: matteus
+      POSTGRESQL_PASSWORD: 250320
+      POSTGRESQL_DATABASE: rosenne-dias
+      POSTGRESQL_DATA_DIR: /data/postgres
+    volumes: 
+      - ./data/pg:/data/postgres
