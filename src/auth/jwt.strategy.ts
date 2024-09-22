@@ -6,7 +6,7 @@ import { JwtPayload } from './auth.interface'
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly primsa: PrismaService) {
+  constructor(private readonly prisma: PrismaService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
-    const user = await this.primsa.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { cpf: payload.cpf },
     })
     if (!user) {

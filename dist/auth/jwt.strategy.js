@@ -15,16 +15,16 @@ const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
 const prisma_service_1 = require("../prisma/prisma.service");
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
-    constructor(primsa) {
+    constructor(prisma) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
             secretOrKey: process.env.JWT_SECRET || 'default-secret-key',
         });
-        this.primsa = primsa;
+        this.prisma = prisma;
     }
     async validate(payload) {
-        const user = await this.primsa.user.findUnique({
+        const user = await this.prisma.user.findUnique({
             where: { cpf: payload.cpf },
         });
         if (!user) {

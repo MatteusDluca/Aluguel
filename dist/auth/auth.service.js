@@ -25,7 +25,7 @@ let AuthService = class AuthService {
             throw new Error('Usuário não encontrado');
         }
         if (user.happyday === happyday) {
-            const payload = { cpf: user.cpf };
+            const payload = { cpf: user.cpf, id: user.id };
             const token = this.jwtService.sign(payload);
             return { access_token: token };
         }
@@ -33,7 +33,7 @@ let AuthService = class AuthService {
         if (!hdMath) {
             throw new Error('Senha incorreta');
         }
-        const payload = { cpf: user.cpf };
+        const payload = { cpf: user.cpf, id: user.id };
         const token = this.jwtService.sign(payload);
         return { access_token: token };
     }

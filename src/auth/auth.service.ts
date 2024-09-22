@@ -16,7 +16,7 @@ export class AuthService {
       throw new Error('Usuário não encontrado')
     }
     if (user.happyday === happyday) {
-      const payload = { cpf: user.cpf }
+      const payload = { cpf: user.cpf, id: user.id }
       const token = this.jwtService.sign(payload)
       return { access_token: token }
     }
@@ -26,7 +26,7 @@ export class AuthService {
       throw new Error('Senha incorreta')
     }
 
-    const payload = { cpf: user.cpf }
+    const payload = { cpf: user.cpf, id: user.id }
     const token = this.jwtService.sign(payload)
 
     return { access_token: token }

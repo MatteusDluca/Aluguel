@@ -24,6 +24,7 @@ model User {
   // stockId       Stock[]
   address   Address  @relation(fields: [addressId], references: [id])
   addressId String
+  Stock     Stock[]
 
   @@map("users")
 }
@@ -37,16 +38,16 @@ model Address {
   User       User[]
 }
 
-// model Stock {
-//   id          String @id @default(uuid())
-//   title       String @unique
-//   description String
-//   code        Int    @unique
-//   status      String
-//   size        Int
+model Stock {
+  id          String @id @default(uuid())
+  title       String @unique
+  description String
+  code        String @unique
+  status      String
+  size        String
 
-//   user    User   @relation(fields: [user_id], references: [id])
-//   user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
 
-//   @@map("stocks")
-// }
+  @@map("stocks")
+}

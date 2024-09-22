@@ -3,8 +3,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtPayload } from './auth.interface';
 declare const JwtStrategy_base: new (...args: any[]) => Strategy;
 export declare class JwtStrategy extends JwtStrategy_base {
-    private readonly primsa;
-    constructor(primsa: PrismaService);
+    private readonly prisma;
+    constructor(prisma: PrismaService);
     validate(payload: JwtPayload): Promise<{
         id: string;
         name: string;
