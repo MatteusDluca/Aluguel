@@ -18,6 +18,7 @@ const jwt_guard_1 = require("../auth/jwt.guard");
 const role_guards_service_1 = require("./role-guards.service");
 const roles_decorator_1 = require("./roles.decorator");
 const stock_service_1 = require("./stock.service");
+const stockDTO_1 = require("./stockDTO");
 let StockController = class StockController {
     constructor(stockService) {
         this.stockService = stockService;
@@ -43,7 +44,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [stockDTO_1.StockDTO, Object]),
     __metadata("design:returntype", void 0)
 ], StockController.prototype, "create", null);
 __decorate([

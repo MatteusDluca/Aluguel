@@ -1,6 +1,5 @@
-import { Body, Controller, Post, UseGuards, Res } from '@nestjs/common'
+import { Body, Controller, Post, Res } from '@nestjs/common'
 import { AuthService } from './auth.service'
-import { JwtAuthGuard } from './jwt.guard'
 import type { Response } from 'express'
 
 @Controller()
@@ -21,11 +20,5 @@ export class AuthController {
     } catch (error) {
       return res.status(401).json({ message: 'error.message' })
     }
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Post('protected')
-  async protectedRoute() {
-    return { message: 'Você esta logado' }
   }
 }

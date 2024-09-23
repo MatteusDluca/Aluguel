@@ -14,5 +14,4 @@ export declare class RegisterService {
         updatedAt: Date;
         addressId: string;
     }>;
-    getUser(): Promise<iUser[]>;
 }

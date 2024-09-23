@@ -14,5 +14,4 @@ export declare class RegisterController {
         updatedAt: Date;
         addressId: string;
     }>;
-    findall(): Promise<iUser[]>;
 }

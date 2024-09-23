@@ -24,9 +24,6 @@ let RegisterController = class RegisterController {
         const registerUser = await this.registerService.newUser(userData);
         return registerUser;
     }
-    async findall() {
-        return this.registerService.getUser();
-    }
 };
 exports.RegisterController = RegisterController;
 __decorate([
@@ -36,12 +33,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], RegisterController.prototype, "create", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], RegisterController.prototype, "findall", null);
 exports.RegisterController = RegisterController = __decorate([
     (0, common_1.Controller)(),
     (0, common_1.UseFilters)(register_filter_1.RegisterFilter),

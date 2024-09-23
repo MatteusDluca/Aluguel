@@ -49,14 +49,6 @@ let RegisterService = class RegisterService {
         });
         return user;
     }
-    async getUser() {
-        const user = await this.prisma.user.findMany({
-            include: {
-                address: true,
-            },
-        });
-        return user;
-    }
 };
 exports.RegisterService = RegisterService;
 exports.RegisterService = RegisterService = __decorate([

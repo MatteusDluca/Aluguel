@@ -38,13 +38,4 @@ export class RegisterService {
     })
     return user
   }
-
-  async getUser(): Promise<iUser[]> {
-    const user = await this.prisma.user.findMany({
-      include: {
-        address: true,
-      },
-    })
-    return user
-  }
 }

@@ -13,17 +13,18 @@ import {
 import { JwtAuthGuard } from 'src/auth/jwt.guard'
 import { RoleGuards } from './role-guards.service'
 import { Roles } from './roles.decorator'
-import { Stock } from './stock.interface'
 import { StockService } from './stock.service'
-import type { StockUpdate } from './stock-update.interface'
+import { StockDTO } from './stockDTO' // Importando o DTO
+import { StockUpdate } from './stock-update.interface'
 
 @Controller('stock')
 @UseGuards(JwtAuthGuard, RoleGuards)
 export class StockController {
   constructor(private readonly stockService: StockService) {}
+
   @Post()
   @Roles('Admin', 'User')
-  create(@Body() createStock: Stock, @Request() req) {
+  create(@Body() createStock: StockDTO, @Request() req) {
     const userId = req.user.id
     return this.stockService.create(createStock, userId)
   }
