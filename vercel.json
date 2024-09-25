@@ -8,20 +8,20 @@
     ],
     "routes": [
         {
-            "src": "/register",
+            "src": "/auth(/.*)?",
             "dest": "/dist/main.js"
         },
         {
-            "src": "/login",
+            "src": "/register(/.*)?",
             "dest": "/dist/main.js"
         },
         {
-            "src": "/stock",
+            "src": "/stock(/.*)?",
             "dest": "/dist/main.js"
         },
         {
             "src": "/(.*)",
-            "dest": "/dist/main.js"
+            "dest": "/dist/main.js" 
         }
     ]
 }
