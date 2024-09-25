@@ -7,7 +7,7 @@
         }],
     "routes": [
         {
-            "dist" : "(.*)",
+            "src" : "(.*)",
             "dest" : "dist/main.js"
         }
     ]
