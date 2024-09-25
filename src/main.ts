@@ -9,7 +9,7 @@ async function bootstrap() {
   app.enableCors({
     origin: true,
     methods: 'GET,POST,DELETE,PUT,PATCH,HEAD',
-    allowedHeaders: ['Content-type'],
+    allowedHeaders: ['Content-type', 'Authorization'],
   })
   
   const options = new DocumentBuilder()
