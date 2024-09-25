@@ -37,6 +37,8 @@ model Address {
   cep        String
   complement String?
   User       User[]
+
+  @@map("address")
 }
 
 model Stock {

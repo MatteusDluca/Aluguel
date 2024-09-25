@@ -11,18 +11,17 @@ async function bootstrap() {
     methods: 'GET,POST,DELETE,PUT,PATCH,HEAD',
     allowedHeaders: ['Content-type'],
   })
-  
+
   const options = new DocumentBuilder()
-  .setTitle('API Rental Store')
-  .setDescription('Roseanne Dias rental store documentation')
-  .setVersion('3.0')
-  .addBearerAuth() // Adiciona a autenticação Bearer
-  .build()
-  
+    .setTitle('API Rental Store')
+    .setDescription('Roseanne Dias rental store documentation')
+    .setVersion('3.0')
+    .addBearerAuth() // Adiciona a autenticação Bearer
+    .build()
+
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('api', app, document)
-  
+
   await app.listen(3333)
-  
 }
 bootstrap()

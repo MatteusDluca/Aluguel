@@ -17,7 +17,7 @@ import { AuthHeaderMiddleware } from './stock.middleware'
   controllers: [StockController],
 })
 export class StockModule {
-  configure(consumer: MiddlewareConsumer){
+  configure(consumer: MiddlewareConsumer) {
     consumer.apply(AuthHeaderMiddleware).forRoutes(StockController)
   }
 }

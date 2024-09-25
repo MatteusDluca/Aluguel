@@ -17,14 +17,14 @@ CREATE TABLE "users" (
 );
 
 -- CreateTable
-CREATE TABLE "Address" (
+CREATE TABLE "address" (
     "id" TEXT NOT NULL,
     "num" INTEGER NOT NULL,
     "street" TEXT NOT NULL,
     "cep" TEXT NOT NULL,
     "complement" TEXT,
 
-    CONSTRAINT "Address_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "address_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -53,7 +53,7 @@ CREATE UNIQUE INDEX "stocks_title_key" ON "stocks"("title");
 CREATE UNIQUE INDEX "stocks_code_key" ON "stocks"("code");
 
 -- AddForeignKey
-ALTER TABLE "users" ADD CONSTRAINT "users_addressId_fkey" FOREIGN KEY ("addressId") REFERENCES "Address"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "users" ADD CONSTRAINT "users_addressId_fkey" FOREIGN KEY ("addressId") REFERENCES "address"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "stocks" ADD CONSTRAINT "stocks_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
