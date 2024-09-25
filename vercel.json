@@ -7,8 +7,20 @@
         }],
     "routes": [
         {
-            "src" : "(.*)",
-            "dest" : "dist/main.js"
+            "src": "/register",
+            "dest": "/dist/register/register.controller.js"
+        },
+        {
+            "src": "/login",
+            "dest": "/dist/login/login.controller.js"
+        },
+        {
+            "src": "/stock",
+            "dest": "/dist/stock/stock.controller.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/dist/main.js"
         }
     ]
 }
