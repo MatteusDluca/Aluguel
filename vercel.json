@@ -6,10 +6,10 @@
             "use": "@vercel/node"
         }
     ],
-    "route": [
+    "routes": [
         {
             "dist" : "(.*)",
-            "routes" : "dist"
+            "dest" : "dist/main.js"
         }
     ]
 }
