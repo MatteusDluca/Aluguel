@@ -5,6 +5,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,POST,DELETE,PUT,PATCH,HEAD',
+    allowedHeaders: ['Content-type', 'Authorization'],
+  })
 
   const options = new DocumentBuilder()
     .setTitle('API Rental Store')
@@ -17,10 +22,5 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document)
 
   await app.listen(3333)
-  app.enableCors({
-    origin: '*',
-    methods: 'GET,POST,DELETE,PUT,PATCH,HEAD',
-    allowedHeaders: ['Content-type', 'Authorization'],
-  })
 }
 bootstrap()
