@@ -9,17 +9,14 @@
     "routes": [
         {
             "src": "/register",
-            "method" : "POST",
             "dest": "/dist/main.js"
         },
         {
             "src": "/login",
-            "method" : "POST",
             "dest": "/dist/main.js"
         },
         {
             "src": "/stock",
-            "method" : "POST, GET, DELETE, PATCH",
             "dest": "/dist/main.js"
         },
         {
