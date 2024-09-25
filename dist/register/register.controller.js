@@ -21,6 +21,7 @@ let RegisterController = class RegisterController {
         this.registerService = registerService;
     }
     async create(userData) {
+        console.log(userData);
         const registerUser = await this.registerService.newUser(userData);
         return registerUser;
     }

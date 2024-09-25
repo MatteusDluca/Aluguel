@@ -10,6 +10,7 @@ export class RegisterController {
 
   @Post('register')
   async create(@Body() userData: iUser) {
+    console.log(userData)
     const registerUser = await this.registerService.newUser(userData)
     return registerUser
   }
