@@ -8,8 +8,7 @@
     ],
     "route": [
         {
-            "dist" : "(.*)",
-            "dest" : "dist/main.js"
+            "dist" : "(.*)"
         }
     ]
 }
