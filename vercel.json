@@ -9,7 +9,7 @@
     "route": [
         {
             "dist" : "(.*)",
-            "route" : "dist"
+            "routes" : "dist"
         }
     ]
 }
