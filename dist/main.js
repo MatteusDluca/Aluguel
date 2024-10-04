@@ -6,6 +6,7 @@ require("reflect-metadata");
 const swagger_1 = require("@nestjs/swagger");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    const port = process.env.PORT || 3333;
     app.enableCors({
         origin: true,
         methods: 'GET,POST,DELETE,PUT,PATCH,HEAD',

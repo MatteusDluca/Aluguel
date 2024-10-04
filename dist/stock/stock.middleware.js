@@ -11,7 +11,7 @@ const common_1 = require("@nestjs/common");
 let AuthHeaderMiddleware = class AuthHeaderMiddleware {
     use(req, res, next) {
         if (req.url.startsWith('/stock')) {
-            req.headers['authorization'] = 'Bearer seu_token_aqui';
+            req.headers.authorization = 'Bearer seu_token_aqui';
         }
         next();
     }

@@ -6,10 +6,10 @@ export declare class StockController {
     constructor(stockService: StockService);
     create(createStock: StockDTO, req: any): Promise<{
         id: string;
-        title: string;
-        description: string;
         code: string;
         status: string;
+        title: string;
+        description: string;
         size: string;
         user_id: string;
     }>;

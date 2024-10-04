@@ -6,10 +6,10 @@ export declare class StockService {
     constructor(prisma: PrismaService);
     create(stockData: Stock, userId: string): Promise<{
         id: string;
-        title: string;
-        description: string;
         code: string;
         status: string;
+        title: string;
+        description: string;
         size: string;
         user_id: string;
     }>;

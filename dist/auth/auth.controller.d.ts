@@ -6,5 +6,5 @@ export declare class AuthController {
     login(loginData: {
         cpf: string;
         happyday: string;
-    }, res: Response): Promise<any>;
+    }, res: Response): Promise<Response<any, Record<string, any>>>;
 }
