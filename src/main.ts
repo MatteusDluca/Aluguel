@@ -9,7 +9,7 @@ async function bootstrap() {
   app.enableCors({
     origin: true,
     methods: 'GET,POST,DELETE,PUT,PATCH,HEAD',
-    allowedHeaders: ['Content-type'],
+    allowedHeaders: ['Content-type', 'Authorization'],
   })
 
   const options = new DocumentBuilder()
@@ -22,6 +22,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('api', app, document)
 
-  await app.listen(3333)
+  await app.listen(port)
 }
 bootstrap()
