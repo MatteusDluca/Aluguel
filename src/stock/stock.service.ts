@@ -2,12 +2,21 @@ import { Injectable, NotFoundException } from '@nestjs/common'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { Stock } from './stock.interface'
 import type { StockUpdate } from './stock-update.interface'
+import { SupaBaseService } from './supabase.service'
 
 @Injectable()
 export class StockService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly supabaseService: SupaBaseService,
+  ) {}
 
-  async create(stockData: Stock, userId: string) {
+  async create(stockData: Stock, userId: string, file: Express.Multer.File) {
+    let imageUrl = null
+    if (file) {
+      imageUrl = await this.supabaseService.uploadImage(file, 'stock-images')
+    }
+
     return await this.prisma.stock.create({
       data: {
         title: stockData.title,
@@ -15,6 +24,7 @@ export class StockService {
         size: stockData.size,
         status: stockData.status,
         code: stockData.code,
+        imageUrl,
         user: {
           connect: { id: userId },
         },

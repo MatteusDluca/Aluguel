@@ -42,12 +42,13 @@ model Address {
 }
 
 model Stock {
-  id          String @id @default(uuid())
-  title       String @unique
+  id          String  @id @default(uuid())
+  title       String  @unique
   description String
-  code        String @unique
+  code        String  @unique
   status      String
   size        String
+  imageUrl    String?
 
   user    User   @relation(fields: [user_id], references: [id])
   user_id String

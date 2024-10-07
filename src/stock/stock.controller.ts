@@ -8,7 +8,9 @@ import {
   Post,
   Query,
   Request,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common'
 import { JwtAuthGuard } from 'src/auth/jwt.guard'
 import { RoleGuards } from './role-guards.service'
@@ -16,6 +18,7 @@ import { Roles } from './roles.decorator'
 import { StockService } from './stock.service'
 import { StockDTO } from './stockDTO' // Importando o DTO
 import { StockUpdate } from './stock-update.interface'
+import { FileInterceptor } from '@nestjs/platform-express'
 
 @Controller('stock')
 @UseGuards(JwtAuthGuard, RoleGuards)
@@ -24,9 +27,14 @@ export class StockController {
 
   @Post()
   @Roles('Admin', 'User')
-  create(@Body() createStock: StockDTO, @Request() req) {
+  @UseInterceptors(FileInterceptor('file'))
+  create(
+    @Body() createStock: StockDTO,
+    @UploadedFile() file: Express.Multer.File,
+    @Request() req,
+  ) {
     const userId = req.user.id
-    return this.stockService.create(createStock, userId)
+    return this.stockService.create(createStock, userId, file)
   }
 
   @Get()
