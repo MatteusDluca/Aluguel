@@ -15,8 +15,9 @@ export class SupaBaseService {
   async uploadImage(
     file: Express.Multer.File,
     bucket: string,
+    userId: string,
   ): Promise<string> {
-    const fileName = `${randomUUID()}-${file.originalname}`
+    const fileName = `${userId}${randomUUID()}-${file.originalname}`
 
     const { error } = await this.supabase.storage
       .from(bucket)

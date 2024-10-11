@@ -37,6 +37,7 @@ model Address {
   cep        String
   complement String?
   User       User[]
+  Clint      Clint[]
 
   @@map("address")
 }
@@ -54,4 +55,17 @@ model Stock {
   user_id String
 
   @@map("stocks")
+}
+
+model Clint {
+  id    String @id @default(uuid())
+  name  String
+  cpf   String @unique
+  tel   String
+  email String
+
+  address   Address @relation(fields: [addressId], references: [id])
+  addressId String
+
+  @@map("clients")
 }

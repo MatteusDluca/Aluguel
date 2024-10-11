@@ -11,12 +11,7 @@ export class StockService {
     private readonly supabaseService: SupaBaseService,
   ) {}
 
-  async create(stockData: Stock, userId: string, file: Express.Multer.File) {
-    let imageUrl = null
-    if (file) {
-      imageUrl = await this.supabaseService.uploadImage(file, 'stock-images')
-    }
-
+  async create(stockData: Stock, userId: string) {
     return await this.prisma.stock.create({
       data: {
         title: stockData.title,
@@ -24,12 +19,22 @@ export class StockService {
         size: stockData.size,
         status: stockData.status,
         code: stockData.code,
-        imageUrl,
         user: {
           connect: { id: userId },
         },
       },
     })
+  }
+
+  async uploadImage(
+    file: Express.Multer.File,
+    userId: string,
+  ): Promise<string> {
+    if (!file) {
+      throw new Error('Nenhum arquivo foi enviado')
+    }
+
+    return await this.supabaseService.uploadImage(file, 'stock-images', userId)
   }
 
   async search(

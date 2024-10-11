@@ -12,12 +12,13 @@ const prisma_service_1 = require("./prisma/prisma.service");
 const register_module_1 = require("./register/register.module");
 const auth_module_1 = require("./auth/auth.module");
 const stock_module_1 = require("./stock/stock.module");
+const clients_module_1 = require("./clients/clients.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [register_module_1.RegisterModule, auth_module_1.AuthModule, stock_module_1.StockModule],
+        imports: [register_module_1.RegisterModule, auth_module_1.AuthModule, stock_module_1.StockModule, clients_module_1.ClientsModule],
         controllers: [],
         providers: [prisma_service_1.PrismaService],
         exports: [prisma_service_1.PrismaService],

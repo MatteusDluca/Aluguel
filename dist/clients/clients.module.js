@@ -6,18 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthHeaderMiddleware = void 0;
+exports.ClientsModule = void 0;
 const common_1 = require("@nestjs/common");
-let AuthHeaderMiddleware = class AuthHeaderMiddleware {
-    use(req, res, next) {
-        if (req.url.startsWith('/stock')) {
-            req.headers.authorization = 'Bearer seu_token_aqui';
-        }
-        next();
-    }
+const clients_controller_1 = require("./clients.controller");
+const clients_service_1 = require("./clients.service");
+const prisma_service_1 = require("../prisma/prisma.service");
+let ClientsModule = class ClientsModule {
 };
-exports.AuthHeaderMiddleware = AuthHeaderMiddleware;
-exports.AuthHeaderMiddleware = AuthHeaderMiddleware = __decorate([
-    (0, common_1.Injectable)()
-], AuthHeaderMiddleware);
-//# sourceMappingURL=stock.middleware.js.map
+exports.ClientsModule = ClientsModule;
+exports.ClientsModule = ClientsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [clients_controller_1.ClientsController],
+        providers: [clients_service_1.ClientsService, prisma_service_1.PrismaService],
+    })
+], ClientsModule);
+//# sourceMappingURL=clients.module.js.map

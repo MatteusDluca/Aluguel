@@ -19,6 +19,8 @@ const role_guards_service_1 = require("./role-guards.service");
 const roles_decorator_1 = require("./roles.decorator");
 const stock_service_1 = require("./stock.service");
 const stockDTO_1 = require("./stockDTO");
+const platform_express_1 = require("@nestjs/platform-express");
+const user_id_decorator_1 = require("./user-id.decorator");
 let StockController = class StockController {
     constructor(stockService) {
         this.stockService = stockService;
@@ -26,6 +28,13 @@ let StockController = class StockController {
     create(createStock, req) {
         const userId = req.user.id;
         return this.stockService.create(createStock, userId);
+    }
+    async uploadImage(file, userId) {
+        if (!file) {
+            throw new Error('Nenhum arquivo foi enviado');
+        }
+        const imageUrl = await this.stockService.uploadImage(file, userId);
+        return { imageUrl };
     }
     gtFind(title, code, description) {
         return this.stockService.getStock(title, code, description);
@@ -47,6 +56,16 @@ __decorate([
     __metadata("design:paramtypes", [stockDTO_1.StockDTO, Object]),
     __metadata("design:returntype", void 0)
 ], StockController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)('/image'),
+    (0, roles_decorator_1.Roles)('Admin', 'User'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
+    __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, user_id_decorator_1.UserId)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], StockController.prototype, "uploadImage", null);
 __decorate([
     (0, common_1.Get)(),
     (0, roles_decorator_1.Roles)('Admin', 'User'),

@@ -19,6 +19,7 @@ import { StockService } from './stock.service'
 import { StockDTO } from './stockDTO' // Importando o DTO
 import { StockUpdate } from './stock-update.interface'
 import { FileInterceptor } from '@nestjs/platform-express'
+import { UserId } from './user-id.decorator'
 
 @Controller('stock')
 @UseGuards(JwtAuthGuard, RoleGuards)
@@ -27,14 +28,24 @@ export class StockController {
 
   @Post()
   @Roles('Admin', 'User')
-  @UseInterceptors(FileInterceptor('file'))
-  create(
-    @Body() createStock: StockDTO,
-    @UploadedFile() file: Express.Multer.File,
-    @Request() req,
-  ) {
+  create(@Body() createStock: StockDTO, @Request() req) {
     const userId = req.user.id
-    return this.stockService.create(createStock, userId, file)
+    return this.stockService.create(createStock, userId)
+  }
+
+  @Post('/image') // Novo endpoint para upload de imagem
+  @Roles('Admin', 'User')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadImage(
+    @UploadedFile() file: Express.Multer.File,
+    @UserId() userId: string,
+  ) {
+    if (!file) {
+      throw new Error('Nenhum arquivo foi enviado')
+    }
+    // Chame o método uploadImage do SupaBaseService
+    const imageUrl = await this.stockService.uploadImage(file, userId)
+    return { imageUrl } // Retorne a URL da imagem
   }
 
   @Get()

@@ -12,9 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StockService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const supabase_service_1 = require("./supabase.service");
 let StockService = class StockService {
-    constructor(prisma) {
+    constructor(prisma, supabaseService) {
         this.prisma = prisma;
+        this.supabaseService = supabaseService;
     }
     async create(stockData, userId) {
         return await this.prisma.stock.create({
@@ -29,6 +31,12 @@ let StockService = class StockService {
                 },
             },
         });
+    }
+    async uploadImage(file, userId) {
+        if (!file) {
+            throw new Error('Nenhum arquivo foi enviado');
+        }
+        return await this.supabaseService.uploadImage(file, 'stock-images', userId);
     }
     async search(title, code, description) {
         return await this.prisma.stock.findMany({
@@ -70,6 +78,7 @@ let StockService = class StockService {
 exports.StockService = StockService;
 exports.StockService = StockService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        supabase_service_1.SupaBaseService])
 ], StockService);
 //# sourceMappingURL=stock.service.js.map
