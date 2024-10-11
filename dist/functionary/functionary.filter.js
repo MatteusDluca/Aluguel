@@ -6,18 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthHeaderMiddleware = void 0;
+exports.FunctionaryFilter = void 0;
 const common_1 = require("@nestjs/common");
-let AuthHeaderMiddleware = class AuthHeaderMiddleware {
-    use(req, res, next) {
-        if (req.url.startsWith('/stock')) {
-            req.headers.authorization = 'Bearer seu_token_aqui';
-        }
-        next();
+let FunctionaryFilter = class FunctionaryFilter {
+    catch(exception, host) {
+        const context = host.switchToHttp();
+        const response = context.getResponse();
+        const status = common_1.HttpStatus.CONFLICT;
+        response.status(status).json({
+            statusCode: status,
+            message: exception.message
+        });
     }
 };
-exports.AuthHeaderMiddleware = AuthHeaderMiddleware;
-exports.AuthHeaderMiddleware = AuthHeaderMiddleware = __decorate([
-    (0, common_1.Injectable)()
-], AuthHeaderMiddleware);
-//# sourceMappingURL=stock.middleware.js.map
+exports.FunctionaryFilter = FunctionaryFilter;
+exports.FunctionaryFilter = FunctionaryFilter = __decorate([
+    (0, common_1.Catch)()
+], FunctionaryFilter);
+//# sourceMappingURL=functionary.filter.js.map

@@ -10,7 +10,7 @@ async function bootstrap() {
     app.enableCors({
         origin: true,
         methods: 'GET,POST,DELETE,PUT,PATCH,HEAD',
-        allowedHeaders: ['Content-type'],
+        allowedHeaders: ['Content-type', 'Authorization'],
     });
     const options = new swagger_1.DocumentBuilder()
         .setTitle('API Rental Store')
@@ -20,7 +20,7 @@ async function bootstrap() {
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);
     swagger_1.SwaggerModule.setup('api', app, document);
-    await app.listen(3333);
+    await app.listen(port);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

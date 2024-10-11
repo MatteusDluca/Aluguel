@@ -13,7 +13,7 @@ export class RegisterFilter implements ExceptionFilter {
     console.log('Erro prisma', exception)
     const context = host.switchToHttp()
     const response = context.getResponse()
-    const status = HttpStatus.CONFLICT
+    const status = HttpStatus.CONFLICT  
 
     let message = 'Um erro inesperado'
 

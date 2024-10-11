@@ -4,13 +4,14 @@ import { StockUpdate } from './stock-update.interface';
 export declare class StockController {
     private readonly stockService;
     constructor(stockService: StockService);
-    create(createStock: StockDTO, req: any): Promise<{
+    create(createStock: StockDTO, file: Express.Multer.File, req: any): Promise<{
         id: string;
-        code: string;
-        status: string;
         title: string;
         description: string;
+        code: string;
+        status: string;
         size: string;
+        imageUrl: string | null;
         user_id: string;
     }>;
     gtFind(title?: string, code?: string, description?: string): Promise<import("./stock.interface").Stock[]>;
