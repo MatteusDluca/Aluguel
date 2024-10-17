@@ -15,6 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientsController = void 0;
 const common_1 = require("@nestjs/common");
 const clients_service_1 = require("./clients.service");
+const role_guards_service_1 = require("../stock/role-guards.service");
+const jwt_guard_1 = require("../auth/jwt.guard");
+const roles_decorator_1 = require("../stock/roles.decorator");
 let ClientsController = class ClientsController {
     constructor(clients) {
         this.clients = clients;
@@ -33,6 +36,7 @@ let ClientsController = class ClientsController {
 exports.ClientsController = ClientsController;
 __decorate([
     (0, common_1.Post)(),
+    (0, roles_decorator_1.Roles)('Admin', 'User'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -40,12 +44,14 @@ __decorate([
 ], ClientsController.prototype, "cClients", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, roles_decorator_1.Roles)('Admin', 'User'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ClientsController.prototype, "listedClients", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, roles_decorator_1.Roles)('Admin', 'User'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -54,6 +60,7 @@ __decorate([
 ], ClientsController.prototype, "updateClient", null);
 exports.ClientsController = ClientsController = __decorate([
     (0, common_1.Controller)('clients'),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, role_guards_service_1.RoleGuards),
     __metadata("design:paramtypes", [clients_service_1.ClientsService])
 ], ClientsController);
 //# sourceMappingURL=clients.controller.js.map
