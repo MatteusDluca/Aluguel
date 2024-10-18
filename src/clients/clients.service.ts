@@ -8,7 +8,7 @@ export class ClientsService {
   constructor(private readonly prisma: PrismaService) {}
   // Created Client
   async createClient(clientData: Clients) {
-    const client = this.prisma.client.create({
+    const clients = this.prisma.client.create({
       data: {
         name: clientData.name,
         cpf: clientData.cpf,
@@ -27,7 +27,7 @@ export class ClientsService {
         address: true,
       },
     })
-    return client
+    return clients
   }
 
   async searchClient(
