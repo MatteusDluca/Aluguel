@@ -1,4 +1,4 @@
-import { Prisma, UserRole as PrismaUserRole } from '@prisma/client';
+import { UserRole as PrismaUserRole } from '@prisma/client';
 export interface Address {
     num: number;
     street: string;
@@ -12,5 +12,5 @@ export interface iUserUpdate {
     tell: number;
     cpf: string;
     role: PrismaUserRole;
-    address: Prisma.AddressUpdateOneRequiredWithoutUserNestedInput;
+    address: Address;
 }

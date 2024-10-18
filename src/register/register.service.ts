@@ -2,9 +2,11 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { iUser } from './register.interface'
 
+
 @Injectable()
 export class RegisterService {
   constructor(private readonly prisma: PrismaService) {}
+  
   async newUser(userData: iUser) {
     try {
       const dateRegex = /^\d{4}-\d{2}-\d{2}$/

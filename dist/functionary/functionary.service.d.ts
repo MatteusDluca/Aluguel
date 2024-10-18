@@ -1,6 +1,6 @@
 import { PrismaService } from 'src/prisma/prisma.service';
-import { iUser } from 'src/register/register.interface';
-import { iUserUpdate } from './functionaryupdate.interface';
+import { iUser } from './functionary.interface';
+import { iUserUpdate } from './functionaryUp.interface';
 export declare class FunctionaryService {
     private readonly prisma;
     constructor(prisma: PrismaService);
@@ -34,5 +34,23 @@ export declare class FunctionaryService {
         updatedAt: Date;
         addressId: string;
     }>;
-    patchFunctionary(id: string, fnUpdate: iUserUpdate): Promise<void>;
+    patchFunctionary(id: string, fnUpdate: iUserUpdate): Promise<{
+        address: {
+            id: string;
+            num: number;
+            street: string;
+            cep: string;
+            complement: string | null;
+        };
+    } & {
+        id: string;
+        name: string;
+        cpf: string;
+        happyday: string;
+        tell: number;
+        role: import(".prisma/client").$Enums.UserRole;
+        createdAt: Date;
+        updatedAt: Date;
+        addressId: string;
+    }>;
 }

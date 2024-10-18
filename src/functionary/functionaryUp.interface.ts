@@ -14,5 +14,5 @@ export interface iUserUpdate {
   tell: number
   cpf: string
   role: PrismaUserRole
-  address: Prisma.AddressUpdateOneRequiredWithoutUserNestedInput
+  address: Address
 }

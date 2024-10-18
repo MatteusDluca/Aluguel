@@ -14,10 +14,5 @@ export interface iUser {
   tell: number
   cpf: string
   role: PrismaUserRole
-  address: {
-    num: number
-    street: string
-    cep: string
-    complement?: string
-  }
+  address: Address
 }
