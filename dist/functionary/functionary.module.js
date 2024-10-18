@@ -26,7 +26,7 @@ exports.FunctionaryModule = FunctionaryModule = __decorate([
     (0, common_1.Module)({
         imports: [stock_module_1.StockModule],
         providers: [functionary_service_1.FunctionaryService, prisma_service_1.PrismaService, jwt_guard_1.JwtAuthGuard],
-        controllers: [functionary_controller_1.FunctionaryController]
+        controllers: [functionary_controller_1.FunctionaryController],
     })
 ], FunctionaryModule);
 //# sourceMappingURL=functionary.module.js.map

@@ -12,5 +12,5 @@ export interface ClientsUpdate {
   cpf: string
   tel: string
   email: string
-  address: Prisma.AddressUpdateOneRequiredWithoutClintNestedInput
+  address: Prisma.AddressUpdateOneRequiredWithoutUserNestedInput
 }

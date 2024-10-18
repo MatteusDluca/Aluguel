@@ -6,23 +6,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-<<<<<<<< HEAD:dist/clients/clients.module.js
-exports.ClientsModule = void 0;
-const common_1 = require("@nestjs/common");
-const clients_controller_1 = require("./clients.controller");
-const clients_service_1 = require("./clients.service");
-const prisma_service_1 = require("../prisma/prisma.service");
-let ClientsModule = class ClientsModule {
-};
-exports.ClientsModule = ClientsModule;
-exports.ClientsModule = ClientsModule = __decorate([
-    (0, common_1.Module)({
-        controllers: [clients_controller_1.ClientsController],
-        providers: [clients_service_1.ClientsService, prisma_service_1.PrismaService],
-    })
-], ClientsModule);
-//# sourceMappingURL=clients.module.js.map
-========
 exports.FunctionaryFilter = void 0;
 const common_1 = require("@nestjs/common");
 let FunctionaryFilter = class FunctionaryFilter {
@@ -32,7 +15,7 @@ let FunctionaryFilter = class FunctionaryFilter {
         const status = common_1.HttpStatus.CONFLICT;
         response.status(status).json({
             statusCode: status,
-            message: exception.message
+            message: exception.message,
         });
     }
 };
@@ -41,4 +24,3 @@ exports.FunctionaryFilter = FunctionaryFilter = __decorate([
     (0, common_1.Catch)()
 ], FunctionaryFilter);
 //# sourceMappingURL=functionary.filter.js.map
->>>>>>>> master:dist/functionary/functionary.filter.js

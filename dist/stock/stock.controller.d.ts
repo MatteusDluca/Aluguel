@@ -4,7 +4,7 @@ import { StockUpdate } from './stock-update.interface';
 export declare class StockController {
     private readonly stockService;
     constructor(stockService: StockService);
-    create(createStock: StockDTO, file: Express.Multer.File, req: any): Promise<{
+    create(createStock: StockDTO, req: any): Promise<{
         id: string;
         title: string;
         description: string;

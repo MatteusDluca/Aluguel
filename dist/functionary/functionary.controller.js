@@ -42,7 +42,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], FunctionaryController.prototype, "showUser", null);
 __decorate([
-    (0, common_1.Post)("register"),
+    (0, common_1.Post)(),
     (0, roles_decorator_1.Roles)('Admin'),
     (0, common_1.UseFilters)(functionary_filter_1.FunctionaryFilter),
     __param(0, (0, common_1.Body)()),

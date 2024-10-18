@@ -17,7 +17,7 @@ let ClientsService = class ClientsService {
         this.prisma = prisma;
     }
     async createClient(clientData) {
-        const client = this.prisma.clint.create({
+        const client = this.prisma.client.create({
             data: {
                 name: clientData.name,
                 cpf: clientData.cpf,
@@ -39,7 +39,7 @@ let ClientsService = class ClientsService {
         return client;
     }
     async searchClient(cpf, name, email) {
-        return await this.prisma.clint.findMany({
+        return await this.prisma.client.findMany({
             where: {
                 AND: [
                     cpf ? { cpf: { contains: cpf, mode: 'insensitive' } } : {},
@@ -56,18 +56,18 @@ let ClientsService = class ClientsService {
         if (cpf || name || email) {
             return await this.searchClient(cpf, name, email);
         }
-        return await this.prisma.clint.findMany({
+        return await this.prisma.client.findMany({
             include: {
                 address: true,
             },
         });
     }
     async patchClients(id, clientsint) {
-        const cli = this.prisma.clint.findUnique({ where: { id } });
+        const cli = this.prisma.client.findUnique({ where: { id } });
         if (!cli) {
             throw new common_1.NotFoundException(`Id ${id} não encontrado`);
         }
-        await this.prisma.clint.update({
+        await this.prisma.client.update({
             where: { id },
             data: clientsint,
         });

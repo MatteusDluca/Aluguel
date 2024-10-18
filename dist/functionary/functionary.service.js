@@ -19,7 +19,7 @@ let FunctionaryService = class FunctionaryService {
     async showUsers() {
         const users = await this.prisma.user.findMany({
             where: {
-                role: "User"
+                role: 'User',
             },
         });
         return users;
@@ -79,7 +79,7 @@ let FunctionaryService = class FunctionaryService {
                     street: fnUpdate.address.street,
                     cep: fnUpdate.address.cep,
                     complement: fnUpdate.address.complement,
-                }
+                },
             };
         }
         const updatedUser = await this.prisma.user.update({
