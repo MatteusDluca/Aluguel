@@ -37,7 +37,7 @@ model Address {
   cep        String
   complement String?
   User       User[]
-  Clint      Client[]
+  Client     Client[]
 
   @@map("address")
 }
