@@ -5,6 +5,8 @@ import {
   Param,
   Patch,
   Post,
+  Query,
+  UseFilters,
   UseGuards,
 } from '@nestjs/common'
 import { ClientsService } from './clients.service'
@@ -13,8 +15,10 @@ import { ClientsUpdate } from './clients-update.interface'
 import { RoleGuards } from 'src/stock/role-guards.service'
 import { JwtAuthGuard } from 'src/auth/jwt.guard'
 import { Roles } from 'src/stock/roles.decorator'
+import { PrismaFilter } from 'src/prisma/prisma.filter'
 
 @Controller('clients')
+@UseFilters(PrismaFilter)
 @UseGuards(JwtAuthGuard, RoleGuards)
 export class ClientsController {
   constructor(private readonly clients: ClientsService) {}
@@ -28,8 +32,12 @@ export class ClientsController {
 
   @Get()
   @Roles('Admin', 'User')
-  async listedClients() {
-    return this.clients.listedClients()
+  async listedClients(
+    @Query('cpf') cpf?: string,
+    @Query('name') name?: string,
+    @Query('email') email?: string,
+  ) {
+    return this.clients.listedClients(cpf, name, email)
   }
 
   @Patch(':id')

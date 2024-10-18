@@ -20,13 +20,7 @@ export declare class ClientsService {
         email: string;
         addressId: string;
     }>;
-    listedClients(): Promise<{
-        id: string;
-        name: string;
-        cpf: string;
-        tel: string;
-        email: string;
-        addressId: string;
-    }[]>;
+    searchClient(cpf?: string, name?: string, email?: string): Promise<Clients[]>;
+    listedClients(cpf?: string, name?: string, email?: string): Promise<Clients[]>;
     patchClients(id: string, clientsint: ClientsUpdate): Promise<void>;
 }

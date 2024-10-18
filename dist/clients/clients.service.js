@@ -38,8 +38,29 @@ let ClientsService = class ClientsService {
         });
         return client;
     }
-    async listedClients() {
-        return this.prisma.clint.findMany();
+    async searchClient(cpf, name, email) {
+        return await this.prisma.clint.findMany({
+            where: {
+                AND: [
+                    cpf ? { cpf: { contains: cpf, mode: 'insensitive' } } : {},
+                    name ? { name: { contains: name, mode: 'insensitive' } } : {},
+                    email ? { email: { contains: email, mode: 'insensitive' } } : {},
+                ],
+            },
+            include: {
+                address: true,
+            },
+        });
+    }
+    async listedClients(cpf, name, email) {
+        if (cpf || name || email) {
+            return await this.searchClient(cpf, name, email);
+        }
+        return await this.prisma.clint.findMany({
+            include: {
+                address: true,
+            },
+        });
     }
     async patchClients(id, clientsint) {
         const cli = this.prisma.clint.findUnique({ where: { id } });

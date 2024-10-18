@@ -8,7 +8,7 @@ export class ClientsService {
   constructor(private readonly prisma: PrismaService) {}
   // Created Client
   async createClient(clientData: Clients) {
-    const client = this.prisma.clint.create({
+    const client = this.prisma.client.create({
       data: {
         name: clientData.name,
         cpf: clientData.cpf,
@@ -30,19 +30,49 @@ export class ClientsService {
     return client
   }
 
+  async searchClient(
+    cpf?: string,
+    name?: string,
+    email?: string,
+  ): Promise<Clients[]> {
+    return await this.prisma.client.findMany({
+      where: {
+        AND: [
+          cpf ? { cpf: { contains: cpf, mode: 'insensitive' } } : {},
+          name ? { name: { contains: name, mode: 'insensitive' } } : {},
+          email ? { email: { contains: email, mode: 'insensitive' } } : {},
+        ],
+      },
+      include: {
+        address: true, // Inclui o campo address na consulta
+      },
+    })
+  }
+
   // Listed clients
-  async listedClients() {
-    return this.prisma.clint.findMany()
+  async listedClients(
+    cpf?: string,
+    name?: string,
+    email?: string,
+  ): Promise<Clients[]> {
+    if (cpf || name || email) {
+      return await this.searchClient(cpf, name, email)
+    }
+    return await this.prisma.client.findMany({
+      include: {
+        address: true, // Inclui o campo address na consulta
+      },
+    })
   }
 
   // Updated Clients
   async patchClients(id: string, clientsint: ClientsUpdate) {
-    const cli = this.prisma.clint.findUnique({ where: { id } })
+    const cli = this.prisma.client.findUnique({ where: { id } })
 
     if (!cli) {
       throw new NotFoundException(`Id ${id} não encontrado`)
     }
-    await this.prisma.clint.update({
+    await this.prisma.client.update({
       where: { id },
       data: clientsint,
     })

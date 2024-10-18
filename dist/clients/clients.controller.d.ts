@@ -5,13 +5,6 @@ export declare class ClientsController {
     private readonly clients;
     constructor(clients: ClientsService);
     cClients(clientsData: Clients): Promise<Clients>;
-    listedClients(): Promise<{
-        id: string;
-        name: string;
-        cpf: string;
-        tel: string;
-        email: string;
-        addressId: string;
-    }[]>;
+    listedClients(cpf?: string, name?: string, email?: string): Promise<Clients[]>;
     updateClient(id: string, data: ClientsUpdate): Promise<void>;
 }

@@ -18,6 +18,7 @@ const clients_service_1 = require("./clients.service");
 const role_guards_service_1 = require("../stock/role-guards.service");
 const jwt_guard_1 = require("../auth/jwt.guard");
 const roles_decorator_1 = require("../stock/roles.decorator");
+const prisma_filter_1 = require("../prisma/prisma.filter");
 let ClientsController = class ClientsController {
     constructor(clients) {
         this.clients = clients;
@@ -26,8 +27,8 @@ let ClientsController = class ClientsController {
         const registerClient = await this.clients.createClient(clientsData);
         return registerClient;
     }
-    async listedClients() {
-        return this.clients.listedClients();
+    async listedClients(cpf, name, email) {
+        return this.clients.listedClients(cpf, name, email);
     }
     async updateClient(id, data) {
         return this.clients.patchClients(id, data);
@@ -45,8 +46,11 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     (0, roles_decorator_1.Roles)('Admin', 'User'),
+    __param(0, (0, common_1.Query)('cpf')),
+    __param(1, (0, common_1.Query)('name')),
+    __param(2, (0, common_1.Query)('email')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Promise)
 ], ClientsController.prototype, "listedClients", null);
 __decorate([
@@ -60,6 +64,7 @@ __decorate([
 ], ClientsController.prototype, "updateClient", null);
 exports.ClientsController = ClientsController = __decorate([
     (0, common_1.Controller)('clients'),
+    (0, common_1.UseFilters)(prisma_filter_1.PrismaFilter),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard, role_guards_service_1.RoleGuards),
     __metadata("design:paramtypes", [clients_service_1.ClientsService])
 ], ClientsController);
