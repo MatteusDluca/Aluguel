@@ -6,7 +6,11 @@ export declare class StockService {
     private readonly prisma;
     private readonly supabaseService;
     constructor(prisma: PrismaService, supabaseService: SupaBaseService);
+<<<<<<< HEAD
     create(stockData: Stock, userId: string): Promise<{
+=======
+    create(stockData: Stock, userId: string, file: Express.Multer.File): Promise<{
+>>>>>>> master
         id: string;
         title: string;
         description: string;

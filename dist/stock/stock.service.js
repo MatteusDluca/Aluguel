@@ -18,7 +18,11 @@ let StockService = class StockService {
         this.prisma = prisma;
         this.supabaseService = supabaseService;
     }
-    async create(stockData, userId) {
+    async create(stockData, userId, file) {
+        let imageUrl = null;
+        if (file) {
+            imageUrl = await this.supabaseService.uploadImage(file, 'stock-images');
+        }
         return await this.prisma.stock.create({
             data: {
                 title: stockData.title,
@@ -26,6 +30,7 @@ let StockService = class StockService {
                 size: stockData.size,
                 status: stockData.status,
                 code: stockData.code,
+                imageUrl,
                 user: {
                     connect: { id: userId },
                 },

@@ -20,14 +20,17 @@ const roles_decorator_1 = require("./roles.decorator");
 const stock_service_1 = require("./stock.service");
 const stockDTO_1 = require("./stockDTO");
 const platform_express_1 = require("@nestjs/platform-express");
+<<<<<<< HEAD
 const user_id_decorator_1 = require("./user-id.decorator");
+=======
+>>>>>>> master
 let StockController = class StockController {
     constructor(stockService) {
         this.stockService = stockService;
     }
-    create(createStock, req) {
+    create(createStock, file, req) {
         const userId = req.user.id;
-        return this.stockService.create(createStock, userId);
+        return this.stockService.create(createStock, userId, file);
     }
     async uploadImage(file, userId) {
         if (!file) {
@@ -50,10 +53,12 @@ exports.StockController = StockController;
 __decorate([
     (0, common_1.Post)(),
     (0, roles_decorator_1.Roles)('Admin', 'User'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Request)()),
+    __param(1, (0, common_1.UploadedFile)()),
+    __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [stockDTO_1.StockDTO, Object]),
+    __metadata("design:paramtypes", [stockDTO_1.StockDTO, Object, Object]),
     __metadata("design:returntype", void 0)
 ], StockController.prototype, "create", null);
 __decorate([

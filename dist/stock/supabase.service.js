@@ -17,8 +17,13 @@ let SupaBaseService = class SupaBaseService {
     constructor() {
         this.supabase = (0, supabase_js_1.createClient)(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
     }
+<<<<<<< HEAD
     async uploadImage(file, bucket, userId) {
         const fileName = `${userId}${(0, crypto_1.randomUUID)()}-${file.originalname}`;
+=======
+    async uploadImage(file, bucket) {
+        const fileName = `${(0, crypto_1.randomUUID)()}-${file.originalname}`;
+>>>>>>> master
         const { error } = await this.supabase.storage
             .from(bucket)
             .upload(fileName, file.buffer, {
