@@ -31,13 +31,13 @@ model User {
 }
 
 model Address {
-  id         String   @id @default(uuid())
+  id         String  @id @default(uuid())
   num        Int
   street     String
   cep        String
   complement String?
   User       User[]
-  Client     Client[]
+  Client     Cli[]
 
   @@map("address")
 }
@@ -57,7 +57,7 @@ model Stock {
   @@map("stocks")
 }
 
-model Client {
+model Cli {
   id    String @id @default(uuid())
   name  String
   cpf   String @unique
