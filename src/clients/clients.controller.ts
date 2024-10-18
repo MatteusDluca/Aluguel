@@ -9,13 +9,14 @@ import {
   UseFilters,
   UseGuards,
 } from '@nestjs/common'
-import { ClientsService } from './clients.service'
+
 import { Clients } from './clients.interface'
 import { ClientsUpdate } from './clients-update.interface'
 import { RoleGuards } from 'src/stock/role-guards.service'
 import { JwtAuthGuard } from 'src/auth/jwt.guard'
 import { Roles } from 'src/stock/roles.decorator'
 import { PrismaFilter } from 'src/prisma/prisma.filter'
+import { ClientsService } from './clients.service'
 
 @Controller('clients')
 @UseFilters(PrismaFilter)
