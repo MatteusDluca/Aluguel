@@ -9,11 +9,7 @@ export class FunctionaryService {
   constructor(private readonly prisma: PrismaService) {}
 
   async showUsers() {
-    const users = await this.prisma.user.findMany({
-      where: {
-        role: 'User',
-      },
-    })
+    const users = await this.prisma.user.findMany()
     return users
   }
 
